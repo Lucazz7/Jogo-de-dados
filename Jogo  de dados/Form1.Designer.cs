@@ -42,6 +42,8 @@ namespace Jogo__de_dados
             this.ValorPartida = new System.Windows.Forms.TextBox();
             this.n_jogador1 = new System.Windows.Forms.TextBox();
             this.n_jogador2 = new System.Windows.Forms.TextBox();
+            this.bt_listar = new System.Windows.Forms.Button();
+            this.bt_resultado = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dado1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dado2)).BeginInit();
             this.SuspendLayout();
@@ -111,7 +113,7 @@ namespace Jogo__de_dados
             // 
             this.vencedor.AutoSize = true;
             this.vencedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.vencedor.Location = new System.Drawing.Point(170, 9);
+            this.vencedor.Location = new System.Drawing.Point(12, 12);
             this.vencedor.Name = "vencedor";
             this.vencedor.Size = new System.Drawing.Size(110, 25);
             this.vencedor.TabIndex = 8;
@@ -121,9 +123,9 @@ namespace Jogo__de_dados
             // btreiniciar
             // 
             this.btreiniciar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btreiniciar.Location = new System.Drawing.Point(224, 249);
+            this.btreiniciar.Location = new System.Drawing.Point(227, 122);
             this.btreiniciar.Name = "btreiniciar";
-            this.btreiniciar.Size = new System.Drawing.Size(120, 31);
+            this.btreiniciar.Size = new System.Drawing.Size(119, 46);
             this.btreiniciar.TabIndex = 9;
             this.btreiniciar.Text = "REINICIAR!";
             this.btreiniciar.UseVisualStyleBackColor = true;
@@ -133,7 +135,7 @@ namespace Jogo__de_dados
             // 
             this.venc.AutoSize = true;
             this.venc.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.venc.Location = new System.Drawing.Point(286, 9);
+            this.venc.Location = new System.Drawing.Point(128, 14);
             this.venc.Name = "venc";
             this.venc.Size = new System.Drawing.Size(0, 25);
             this.venc.TabIndex = 10;
@@ -141,18 +143,21 @@ namespace Jogo__de_dados
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 260);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(324, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 13);
+            this.label1.Size = new System.Drawing.Size(141, 24);
             this.label1.TabIndex = 11;
             this.label1.Text = "Valor da partida";
             // 
             // ValorPartida
             // 
-            this.ValorPartida.Location = new System.Drawing.Point(12, 276);
+            this.ValorPartida.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ValorPartida.Location = new System.Drawing.Point(482, 12);
             this.ValorPartida.Name = "ValorPartida";
-            this.ValorPartida.Size = new System.Drawing.Size(78, 20);
+            this.ValorPartida.Size = new System.Drawing.Size(57, 29);
             this.ValorPartida.TabIndex = 12;
+            this.ValorPartida.Text = "12";
             this.ValorPartida.TextChanged += new System.EventHandler(this.ValorPartida_TextChanged);
             // 
             // n_jogador1
@@ -162,6 +167,7 @@ namespace Jogo__de_dados
             this.n_jogador1.Name = "n_jogador1";
             this.n_jogador1.Size = new System.Drawing.Size(112, 29);
             this.n_jogador1.TabIndex = 13;
+
             // 
             // n_jogador2
             // 
@@ -171,12 +177,36 @@ namespace Jogo__de_dados
             this.n_jogador2.Size = new System.Drawing.Size(113, 28);
             this.n_jogador2.TabIndex = 14;
             // 
+            // bt_listar
+            // 
+            this.bt_listar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_listar.Location = new System.Drawing.Point(212, 260);
+            this.bt_listar.Name = "bt_listar";
+            this.bt_listar.Size = new System.Drawing.Size(134, 46);
+            this.bt_listar.TabIndex = 15;
+            this.bt_listar.Text = "CADASTRAR";
+            this.bt_listar.UseVisualStyleBackColor = true;
+            this.bt_listar.Click += new System.EventHandler(this.bt_listar_Click);
+            // 
+            // bt_resultado
+            // 
+            this.bt_resultado.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_resultado.Location = new System.Drawing.Point(375, 260);
+            this.bt_resultado.Name = "bt_resultado";
+            this.bt_resultado.Size = new System.Drawing.Size(164, 47);
+            this.bt_resultado.TabIndex = 16;
+            this.bt_resultado.Text = "Gerar Resultado";
+            this.bt_resultado.UseVisualStyleBackColor = true;
+            this.bt_resultado.Click += new System.EventHandler(this.bt_resultado_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(562, 318);
+            this.Controls.Add(this.bt_resultado);
+            this.Controls.Add(this.bt_listar);
             this.Controls.Add(this.n_jogador2);
             this.Controls.Add(this.n_jogador1);
             this.Controls.Add(this.ValorPartida);
@@ -214,6 +244,8 @@ namespace Jogo__de_dados
         private System.Windows.Forms.TextBox ValorPartida;
         private System.Windows.Forms.TextBox n_jogador1;
         private System.Windows.Forms.TextBox n_jogador2;
+        private System.Windows.Forms.Button bt_listar;
+        private System.Windows.Forms.Button bt_resultado;
     }
 }
 

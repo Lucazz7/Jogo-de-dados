@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Jogo__de_dados
 {
+   
     public partial class Form1 : Form
     {
+        Thread Form2;
         private Random rdnDado = new Random();
         bool flagJoga1;
         bool flagJoga2;
@@ -72,6 +76,17 @@ namespace Jogo__de_dados
 
             }
         }
+
+        internal static void Start()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void SetApartmentState(ApartmentState sTA)
+        {
+            throw new NotImplementedException();
+        }
+
         private void label5_Click(object sender, EventArgs e)
         {
 
@@ -176,6 +191,8 @@ namespace Jogo__de_dados
             ValorPartida.ReadOnly = false;
             pontos1.Text = ValorPartida.Text;
             pontos2.Text = ValorPartida.Text;
+
+            
         }
 
         private void ValorPartida_TextChanged(object sender, EventArgs e)
@@ -183,5 +200,46 @@ namespace Jogo__de_dados
             pontos1.Text = ValorPartida.Text;
             pontos2.Text = ValorPartida.Text;
         }
+
+        private void bt_listar_Click(object sender, EventArgs e)
+        {
+            //this.Close(); // Fecha a janela atual 
+            Form2 = new Thread(newForm2); // instancia a janela atual
+            //Form2.SetApartmentState(ApartmentState.STA); // Indico que sera single thread 
+            Form2.Start(); // e inicio
+        }
+
+        private void newForm2()
+        {
+            Application.Run(new Form2());
+        }
+
+        private void bt_resultado_Click(object sender, EventArgs e)
+        {
+            String log = "Jogador 1: " + n_jogador1.Text + " --" + "Pontos : " + pontos1.Text + "\n" + "Jogador 2: " + n_jogador2.Text + " --" + "Pontos: " + pontos2.Text + "\n" + "Valor da partida: " + ValorPartida.Text + "\n" + "Vencedor da partida: " + venc.Text;
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "Arquivo de texto (*.txt)|*.txt|Todos os arquivos (*.*)|*.*";
+            saveFileDialog1.Title = "Salvar um Arquivo Texto";
+            saveFileDialog1.FileName = "Cadastro.txt";
+            //saveFileDialog1.ShowDialog();
+
+            if (saveFileDialog1.FileName != "")
+            {
+                System.IO.FileStream fs = (System.IO.FileStream)saveFileDialog1.OpenFile();
+
+                byte[] bytes = Encoding.ASCII.GetBytes(log);
+                int Nbytes = Encoding.ASCII.GetCharCount(bytes);
+                fs.Write(bytes, 0, Nbytes);
+                //Escrever o endereco do arquivo
+                log = saveFileDialog1.FileName;
+                fs.Close();
+
+            }
+
+            
+
+        }
+
+       
     }
 }
