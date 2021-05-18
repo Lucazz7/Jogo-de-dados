@@ -20,6 +20,7 @@ namespace Jogo__de_dados
         bool flagJoga1;
         bool flagJoga2;
 
+        DateTime diaAtual = DateTime.Today;
         int valor_dado1;
         int valor_dado2;
         public Form1()
@@ -216,7 +217,7 @@ namespace Jogo__de_dados
 
         private void bt_resultado_Click(object sender, EventArgs e)
         {
-            String log = "Jogador 1: " + n_jogador1.Text + " --" + "Pontos : " + pontos1.Text + "\n" + "Jogador 2: " + n_jogador2.Text + " --" + "Pontos: " + pontos2.Text + "\n" + "Valor da partida: " + ValorPartida.Text + "\n" + "Vencedor da partida: " + venc.Text;
+            String log = "Data atual: " + diaAtual.ToString() + "\n" + "Jogador 1: " + n_jogador1.Text + " -- " + "Pontos : " + pontos1.Text + "\n" + "Jogador 2: " + n_jogador2.Text + " -- " + "Pontos: " + pontos2.Text + "\n" + "Valor da partida: " + ValorPartida.Text + "\n" + "Vencedor da partida: " + venc.Text;
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "Arquivo de texto (*.txt)|*.txt|Todos os arquivos (*.*)|*.*";
             saveFileDialog1.Title = "Salvar um Arquivo Texto";
