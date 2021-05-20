@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Jogo__de_dados
 {
-   
+
     public partial class Form1 : Form
     {
         Thread Form2;
@@ -23,13 +23,27 @@ namespace Jogo__de_dados
         DateTime diaAtual = DateTime.Today;
         int valor_dado1;
         int valor_dado2;
-        public Form1()
+        public Form1(String nomeJog1, String nomeJog2)
         {
+
+
             InitializeComponent();
             ValorPartida.Text = "5";
-            
+
             flagJoga1 = true;
             flagJoga2 = true;
+            n_jogador1.Text = nomeJog1;
+            n_jogador2.Text = nomeJog2;
+            if ((n_jogador1.Text == "verificar") || (n_jogador2.Text == "Verificar"))
+            {
+                flagJoga1 = false;
+                flagJoga2 = false;
+            }
+            else
+            {
+                flagJoga1 = true;
+                flagJoga2 = true;
+            }
         }
 
         private void comparaDados()
@@ -49,12 +63,12 @@ namespace Jogo__de_dados
                 if (valor_dado2 < valor_dado1)
                 {
                     Pontos2Int = Pontos2Int - 1;
-                    pontos2.Text = Convert.ToString(Pontos2Int); 
+                    pontos2.Text = Convert.ToString(Pontos2Int);
                 }
-            if ((Pontos1Int == 0) || (Pontos2Int == 0))
-                        {
+                if ((Pontos1Int == 0) || (Pontos2Int == 0))
+                {
 
-                    if(Pontos1Int == 0)
+                    if (Pontos1Int == 0)
                     {
                         venc.Text = "Jogador 2";
                     }
@@ -67,11 +81,11 @@ namespace Jogo__de_dados
 
                 }
                 else
-            {
-                flagJoga1 = true;
-                flagJoga2 = true;
-                bt_joga1.Text = "JOGAR!";
-                btjoga2.Text = "JOGAR!";
+                {
+                    flagJoga1 = true;
+                    flagJoga2 = true;
+                    bt_joga1.Text = "JOGAR!";
+                    btjoga2.Text = "JOGAR!";
                 }
 
 
@@ -97,7 +111,7 @@ namespace Jogo__de_dados
         {
             //Gerar numeros aleatorios dado1
 
-            
+
 
             if (flagJoga1)
             {
@@ -138,39 +152,40 @@ namespace Jogo__de_dados
         private void btjoga2_Click(object sender, EventArgs e)
         {
             //variavel do dado2
-            
-            
 
-            if(flagJoga2) { 
 
-            //Definindo que o numero de numeros aleatorios é de 1 a 6
-            valor_dado2 = rdnDado.Next(1, 7);
 
-            //Condição para que as imagens são geradas conforme os numero com IF
-            if (valor_dado2 == 1)
+            if (flagJoga2)
             {
-                dado2.Image = Properties.Resources.dado1;
-            }
-            if (valor_dado2 == 2)
-            {
-                dado2.Image = Properties.Resources.dado2;
-            }
-            if (valor_dado2 == 3)
-            {
-                dado2.Image = Properties.Resources.dado3;
-            }
-            if (valor_dado2 == 4)
-            {
-                dado2.Image = Properties.Resources.dado4;
-            }
-            if (valor_dado2 == 5)
-            {
-                dado2.Image = Properties.Resources.dado5;
-            }
-            if (valor_dado2 == 6)
-            {
-                dado2.Image = Properties.Resources.dado6;
-            }
+
+                //Definindo que o numero de numeros aleatorios é de 1 a 6
+                valor_dado2 = rdnDado.Next(1, 7);
+
+                //Condição para que as imagens são geradas conforme os numero com IF
+                if (valor_dado2 == 1)
+                {
+                    dado2.Image = Properties.Resources.dado1;
+                }
+                if (valor_dado2 == 2)
+                {
+                    dado2.Image = Properties.Resources.dado2;
+                }
+                if (valor_dado2 == 3)
+                {
+                    dado2.Image = Properties.Resources.dado3;
+                }
+                if (valor_dado2 == 4)
+                {
+                    dado2.Image = Properties.Resources.dado4;
+                }
+                if (valor_dado2 == 5)
+                {
+                    dado2.Image = Properties.Resources.dado5;
+                }
+                if (valor_dado2 == 6)
+                {
+                    dado2.Image = Properties.Resources.dado6;
+                }
                 flagJoga2 = false;
                 btjoga2.Text = "OK";
                 comparaDados();
@@ -185,15 +200,47 @@ namespace Jogo__de_dados
 
         private void btreiniciar_Click(object sender, EventArgs e)
         {
-            dado1.Image = Properties.Resources.dado0;
-            dado2.Image = Properties.Resources.dado0;
-            flagJoga1 = true;
-            flagJoga2 = true;
-            ValorPartida.ReadOnly = false;
-            pontos1.Text = ValorPartida.Text;
-            pontos2.Text = ValorPartida.Text;
 
-            
+
+            string jog_ganhador;
+            if (n_jogador1.Text != "Identificar" && n_jogador2.Text != "Identificar")
+            {
+                if (int.Parse(pontos1.Text) != 0 && int.Parse(pontos2.Text) != 0)
+                {
+                    if (flagJoga1 == false && flagJoga2 == false)
+
+                    {
+                        flagJoga1 = true;
+                        flagJoga2 = true;
+                    }
+                }
+                else
+                {
+                    if ((int.Parse(pontos1.Text) == 0))
+                    {
+                        // ganha jogador 1
+                        jog_ganhador = n_jogador2.Text;
+                    }
+                    else
+                    {
+                        // Ganha jogador2
+                        jog_ganhador = n_jogador1.Text;
+                    }
+                    MessageBox.Show("O Jogador " + jog_ganhador + " ganhou\n Parabéns !!!");
+                    pontos1.Text = pontos2.Text = "0";      // zerou totais
+                    n_jogador1.Text = n_jogador2.Text = "Identificar";      // mudou o nick do botao
+                    flagJoga1 = flagJoga2 = false;        // bloqueou jogadores
+                }
+                dado1.Image = Properties.Resources.dado0;
+                dado2.Image = Properties.Resources.dado0;
+                ValorPartida.ReadOnly = false;
+                pontos1.Text = ValorPartida.Text;
+                pontos2.Text = ValorPartida.Text;
+
+
+            }
+
+
         }
 
         private void ValorPartida_TextChanged(object sender, EventArgs e)
@@ -237,10 +284,10 @@ namespace Jogo__de_dados
 
             }
 
-            
+
 
         }
 
-       
+
     }
 }
